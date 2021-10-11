@@ -26,4 +26,15 @@ class Restaurant extends ResourceController {    //ประกาศclass
                 return $this->failNotFound('No Restaurant found with id: ' . $id);
             }
     }
+
+    //insert new restaurant
+    public function create() {   //ประกาศฟังก์ชัน
+        $param = [
+            'name' => $this->request->getVar('name'),   //พารามิเตอร์
+            'type' => $this->request->getVar('type'),
+            'imageurl' => $this->request->getVar('imageurl'),
+        ];    
+        $this->model->insert($param);
+        return $this->respondCreated("Restaurant create");
+    }
 }
